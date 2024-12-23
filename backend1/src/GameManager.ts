@@ -45,7 +45,7 @@ export class GameManager{
             console.log("in move1")
             const game = this.games.find(game => game.player1 === socket || game.player2 === socket);
             if(game){
-                console.log("inside makemocve")
+                console.log("inside makemove")
                 game.makeMove(socket,message.move);
             }
 
