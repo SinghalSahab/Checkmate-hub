@@ -17,6 +17,7 @@ const GamePage = () => {
        } 
        socket.onmessage = (event) => {
         const message = JSON.parse(event.data);
+        console.log(message);
         switch(message.type){
             
             case INIT_GAME:
@@ -43,10 +44,11 @@ if(!socket) return<div>Connecting...</div>
     <div className='justify-center bg-zinc-900 min-h-screen flex'>
        <div className='pt-8 w-full max-w-screen-lg'>
         <div className='grid grid-cols-6 gap-4 w-full'>
-            <div className='col-span-4 w-full bg-slate-400 '>
-                <ChessBoard board={board}/>
+            <div className='col-span-4 w-full '>
+                <ChessBoard socket={socket} board={board}/>
             </div>
-            <div className='col-span-2 w-full '>
+            <div className='col-span-2 w-full flex justify-center'>
+            <div className='pt-8'>
             <Button onClick={()=>{
                 socket.send(JSON.stringify({
                     type: INIT_GAME
@@ -54,6 +56,7 @@ if(!socket) return<div>Connecting...</div>
               }}>Play
                 
             </Button>
+            </div>
             </div>
         </div>
        </div>

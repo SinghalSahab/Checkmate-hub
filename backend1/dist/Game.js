@@ -61,11 +61,11 @@ class Game {
         //broadcast the game state to both player
         if (this.moveCount % 2 === 0) {
             console.log("Sent1");
-            this.player2.send(JSON.stringify({ type: "move", payload: move }));
+            this.player2.send(JSON.stringify({ type: message_1.MOVE, payload: move }));
         }
         else {
             console.log("Sent1");
-            this.player1.send(JSON.stringify({ type: "move", payload: move }));
+            this.player1.send(JSON.stringify({ type: message_1.MOVE, payload: move }));
         }
         this.moveCount++;
     }
