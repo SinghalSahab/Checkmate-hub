@@ -20,7 +20,7 @@ export class GameManager{
 
     removeUser(socket: WebSocket){
         this.users = this.users.filter(users => users!=socket);
-        //stopn the game when the user left
+        //stopin the game when the user left
     }
 
     private addHandler(socket:WebSocket){

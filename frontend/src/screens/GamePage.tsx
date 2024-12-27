@@ -45,7 +45,7 @@ if(!socket) return<div>Connecting...</div>
        <div className='pt-8 w-full max-w-screen-lg'>
         <div className='grid grid-cols-6 gap-4 w-full'>
             <div className='col-span-4 w-full '>
-                <ChessBoard socket={socket} board={board}/>
+                <ChessBoard setBoard={setBoard} chess={chess} socket={socket} board={board}/>
             </div>
             <div className='col-span-2 w-full flex justify-center'>
             <div className='pt-8'>

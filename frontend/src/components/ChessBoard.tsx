@@ -1,7 +1,9 @@
 import { Color, PieceSymbol, Square } from 'chess.js';
 import React, { useState } from 'react'
 
-const ChessBoard = ({board,socket} :{
+const ChessBoard = ({chess,setBoard,board,socket} :{
+    chess:any;
+    setBoard:any;
     board:({
         square: Square;
         type: PieceSymbol;
@@ -15,20 +17,27 @@ const ChessBoard = ({board,socket} :{
     <div className='text-black w-full'>
             {board.map((row, rowIndex) => (
                 <div key={rowIndex} className='flex justify-center items-center'>
-                    {row.map((square, squareIndex) => (
-                        <div onClick={()=>{
+                    {row.map((square, squareIndex) => {
+
+                    const squareRepresentation = String.fromCharCode(97 + (squareIndex % 8)) + "" + (8-rowIndex) as Square;
+                        return <div onClick={()=>{
                               if(!from){
-                                setFrom(square?.square ?? null);
+                                setFrom(squareRepresentation);
                               }
                               else{
-                                setTo(square?.square ?? null);
                                 socket.send(JSON.stringify({
                                     type:"move",
                                     payload:{
                                     from,
-                                    to: square?.square
+                                    to : squareRepresentation
                                     }
                                 }))
+                                setFrom(null);
+                                chess.move({
+                                    from,
+                                    to : squareRepresentation
+                                });
+                                setBoard(chess.board());
                               }
                         }} key={squareIndex} className={`p-2 w-16 h-16 ${(rowIndex + squareIndex)%2 == 0? 'bg-[#779556]' : 'bg-[#EBECD0]'}`}>
                             <div className='w-full justify-center flex h-full'>
@@ -37,7 +46,7 @@ const ChessBoard = ({board,socket} :{
                                 </div>
                             </div>
                         </div>
-                    ))}
+                    })}
                 </div>
             ))}
     </div>
