@@ -15,7 +15,7 @@ class GameManager {
     }
     removeUser(socket) {
         this.users = this.users.filter(users => users != socket);
-        //stopn the game when the user left
+        //stopin the game when the user left
     }
     addHandler(socket) {
         socket.on("message", (data) => {
@@ -37,7 +37,7 @@ class GameManager {
                 const game = this.games.find(game => game.player1 === socket || game.player2 === socket);
                 if (game) {
                     console.log("inside makemove");
-                    game.makeMove(socket, message.move);
+                    game.makeMove(socket, message.payload.move);
                 }
             }
         });

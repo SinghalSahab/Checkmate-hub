@@ -28,8 +28,10 @@ const ChessBoard = ({chess,setBoard,board,socket} :{
                                 socket.send(JSON.stringify({
                                     type:"move",
                                     payload:{
-                                    from,
+                                    move: {
+                                        from,
                                     to : squareRepresentation
+                                    }
                                     }
                                 }))
                                 setFrom(null);
