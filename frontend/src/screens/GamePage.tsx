@@ -34,6 +34,7 @@ const GamePage = () => {
                 break;
             case GAME_OVER:
                 console.log("Game Over");
+                setStarted(false);
                 break;
             default:
                 break;

@@ -1,5 +1,7 @@
 import { Color, PieceSymbol, Square } from 'chess.js';
 import React, { useState } from 'react'
+import imageMap from '../assets/imageMap';
+
 
 const ChessBoard = ({chess,setBoard,board,socket} :{
     chess:any;
@@ -44,7 +46,8 @@ const ChessBoard = ({chess,setBoard,board,socket} :{
                         }} key={squareIndex} className={`p-2 w-16 h-16 ${(rowIndex + squareIndex)%2 == 0? 'bg-[#779556]' : 'bg-[#EBECD0]'}`}>
                             <div className='w-full justify-center flex h-full'>
                                 <div className='h-full justify-center flex flex-col'>
-                                {square? square.type : ""}
+                                {square ? <img alt='chess pieces' className='w-15' src={`/${square?.color === "b" ? square?.type :
+                                     `${square?.type?.toUpperCase()} copy`}.png`} /> : null}
                                 </div>
                             </div>
                         </div>
